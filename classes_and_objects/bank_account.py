@@ -83,3 +83,54 @@ Explanation:
 =================================================
 
 """
+class bankaccount:
+  def __init__(self,name,account_number,opening_balance=0): 
+    if opening_balance<0:
+        print("error:opening balance cannot be negative.setting balance to 0.")
+        self.balance=0
+    else:
+        self.balance=opening_balance
+
+    self.name=name
+    self.accout_number=account_number
+
+  def deposit(self,amount):
+    if amount<=0:
+        print("error:deposit amomunt must be greater than zero.")
+    else:
+        self.balance+=amount
+        print(f"successfully deposited ${amount}.new balance.${self.balance}")
+
+  def withdrow(self,amount):
+    if amount<=0:
+        print("error:withdrow amount must be greter than zero.")
+    elif amount >self.balance:
+        print("error:insufficient funds. cannot withdrow${amount}.current balance:${self.balance}")
+    else:
+        self.balance-=amount 
+        print(f"successfully wtidrow ${amount}.new balance:${self.balance}")
+
+  def get_balance(self):
+    return self.balance
+
+  def __str__(self):
+    return f"account holder[{self.accout_number}-{self.name}]:${self.balance}"  
+
+
+
+  #input
+a1=bankaccount("Alice","001",500)
+a2=bankaccount("Bod","002")
+
+a1.deposit(200)
+a2.withdrow(100)
+a1.withdrow(2000)#overdraft->rejected
+
+a2.deposit(-50)#invalid->rejected
+a2.deposit(300)
+
+#output
+print(a1)
+print(a2)
+
+    

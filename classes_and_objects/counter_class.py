@@ -89,3 +89,43 @@ Explanation:
 =================================================
 
 """
+class counter:
+    total=0
+
+    def __init__(self,name):
+        self.name=name
+        self.count=0
+
+    def increment(self,value=1):
+        self.count+=value
+        counter.total+=value
+      
+    def reset(self):
+         counter.total-=self.count
+         self.count=0
+    
+    def __str__(self):
+        return f"{self.name}:count=[self.count]"
+    
+    @classmethod
+    def get_total(cls):
+        return cls.total
+  
+    
+
+#input
+c1=counter("clicks")
+c2=counter("views")
+c3=counter("downloads")
+
+for _ in range(3):
+    c1.increment()
+for _ in range(5):
+    c2.increment()
+c3.increment(10)
+c1.reset()
+
+print(c1)
+print(c2)
+print(c3)
+print("total across all reset:",counter.get_total())

@@ -79,3 +79,49 @@ Explanation:
 =================================================
 
 """
+class student:
+    def __init__(self,name,roll_no):
+        self.name=name
+        self.roll_no=roll_no
+        self.marks=[]
+
+    def add_mark(self,mark):
+        self.marks.append(mark)
+
+    def total_marks(self):
+        if len(self.marks)==0:
+            return 0
+        return sum(self.total_marks)/len(self.marks)
+  
+    def grade(self):
+        avg=self.average_marks()
+
+        if avg>=90:
+            return 'A'
+        elif avg>=75:
+            return 'B'
+        elif avg>=50:
+            return 'c'
+        else:
+            return 'D'
+        
+    def report(self):
+        return (self.name,
+                self.roll_no,
+                self.total_marks(),
+                self.average_marks(),
+                self.grade())
+    
+
+    #input
+if __name__=="__main__":
+  s1=student("Alice",101)
+  for m in [90,85,95]:
+    s1.add_mark(m)
+  s2=student("Bod",102)
+  for m in [40,55,60]:
+    s2.add_mark(m)
+
+
+  print(s1)
+  print(s2)
